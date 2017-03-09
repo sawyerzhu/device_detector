@@ -9,6 +9,10 @@
   name: 'Banshee'
   version: '$1'
 
+- regex: 'Boxee(?:[ /]([\d\.]+))?'
+  name: 'Boxee'
+  version: '$1'
+
 - regex: 'Clementine(?:[ /]([\d\.]+))?'
   name: 'Clementine'
   version: '$1'
@@ -23,6 +27,10 @@
 
 - regex: 'MediaMonkey(?:[ /](\d+[\.\d]+))?'
   name: 'MediaMonkey'
+  version: '$1'
+
+- regex: 'Miro(?:/(\d+[\.\d]+))?'
+  name: 'Miro'
   version: '$1'
 
 - regex: 'NexPlayer(?:/(\d+[\.\d]+))?'
@@ -45,14 +53,30 @@
   name: 'SubStream'
   version: '$1'
 
-- regex: 'VLC(?:/([\d\.]+))?'
+- regex: '(?:Lib)?VLC(?:/([\d\.]+))?'
   name: 'VLC'
   version: '$1'
 
-- regex: 'Windows-Media-Player(?:/(\d+[\.\d]+))?'
+- regex: 'Winamp(?:MPEG)?(?:/(\d+[\.\d]+))?'
+  name: 'Winamp'
+  version: '$1'
+
+- regex: '(?:Windows-Media-Player|NSPlayer)(?:/(\d+[\.\d]+))?'
   name: 'Windows Media Player'
   version: '$1'
 
 - regex: 'XBMC(?:/([\d\.]+))?'
   name: 'XBMC'
+  version: '$1'
+
+- regex: 'Kodi(?:/([\d\.]+))?'
+  name: 'Kodi'
+  version: '$1'
+
+- regex: 'stagefright(?:/([\d\.]+))?'
+  name: 'Stagefright'
+  version: '$1'
+
+- regex: 'Instacast(?:/([\d\.]+))? CFNetwork/([\d\.]+)'
+  name: 'Instacast'
   version: '$1'

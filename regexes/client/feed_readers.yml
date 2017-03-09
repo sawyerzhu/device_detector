@@ -101,3 +101,8 @@
   url: 'http://www.rssowl.org/'
   type: 'Feed Reader'
 
+- regex: 'Stringer'
+  name: 'Stringer'
+  version: ''
+  url: 'https://github.com/swanson/stringer'
+  type: 'Feed Reader'

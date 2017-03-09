@@ -5,13 +5,24 @@
 # @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
 ###############
 
-#newer versions of IE
+# Microsoft Edge (newer versions of IE)
 - regex: 'Edge[ /](\d+[\.\d]+)'
-  name: 'Internet Explorer'
+  name: 'Microsoft Edge'
   version: '$1'
   engine:
     default: 'Edge'
 
+# 360 Browser
+- regex: 'QIHU 360[ES]E'
+  name: '360 Browser'
+  version: ''
+
+# 360 Phone Browser
+- regex: '360 Aphone Browser(?: \((\d+[\.\d]+)(?:beta)?\))?'
+  name: '360 Phone Browser'
+  version: '$1'
+  engine:
+    default: 'WebKit'
 
 #SailfishBrowser
 - regex: 'SailfishBrowser(?:/(\d+[\.\d]+))?'
@@ -47,6 +58,17 @@
   version: '$1'
   engine:
     default: 'Gecko'
+- regex: 'Maemo Browser(?: (\d+[\.\d]+))?'
+  name: 'MicroB'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
+#Deepnet Explorer
+- regex: 'Deepnet Explorer (\d+[\.\d]+)?'
+  name: 'Deepnet Explorer'
+  version: '$1'
+
 
 #Avant Browser
 - regex: 'Avant Browser'
@@ -55,10 +77,31 @@
   engine:
     default: '' # multiple
 
+#Amigo
+- regex: 'Chrome/(\d+[\.\d]+).*MRCHROME'
+  name: 'Amigo'
+  version: '$1'
+  engine:
+    default: 'WebKit'
+    versions:
+      28: 'Blink'
+
+#Atomic Web Browser
+- regex: 'AtomicBrowser(?:/(\d+[\.\d]+))?'
+  name: 'Atomic Web Browser'
+  version: '$1'
+
 #Bunjalloo
 - regex: 'Bunjalloo(?:/(\d+[\.\d]+))?'
   name: 'Bunjalloo'
   version: '$1'
+
+#Brave
+- regex: 'Brave(?:/(\d+[\.\d]+))?'
+  name: 'Brave'
+  version: '$1'
+  engine:
+    default: 'Blink'
 
 #Iceweasel
 - regex: 'Iceweasel(?:/(\d+[\.\d]+))?'
@@ -105,9 +148,21 @@
     versions:
       3: 'WebKit'
 
+#Jig Browser
+- regex: 'jig browser(?: web;|9i?)?(?:[/ ](\d+[\.\d]+))?'
+  name: 'Jig Browser'
+  version: '$1'
+
 #Kapiko
 - regex: 'Kapiko(?:/(\d+[\.\d]+))?'
   name: 'Kapiko'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
+#Kylo
+- regex: 'Kylo(?:/(\d+[\.\d]+))?'
+  name: 'Kylo'
   version: '$1'
   engine:
     default: 'Gecko'
@@ -130,6 +185,16 @@
   version: '$1 ($2)'
   engine:
     default: 'Gecko'
+- regex: 'FxiOS/(\d+[\.\d]+)'
+  name: 'Firefox'
+  version: 'iOS $1'
+  engine:
+    default: 'WebKit'
+
+#ANT Fresco
+- regex: 'ANTFresco(?:[/ ](\d+[\.\d]+))?'
+  name: 'ANT Fresco'
+  version: '$1'
 
 #ANTGalio
 - regex: 'ANTGalio(?:/(\d+[\.\d]+))?'
@@ -153,8 +218,13 @@
   name: 'Fireweb Navigator'
   version: '$1'
 
+#Fireweb
+- regex: 'Fireweb(?:/(\d+[\.\d]+))?'
+  name: 'Fireweb'
+  version: '$1'
+
 #Netscape
-- regex: '(?:Navigator|Netscape6)(?:/(\d+[\.\d]+))?'
+- regex: '(?:Navigator|Netscape6?)(?:/(\d+[\.\d]+))?'
   name: 'Netscape'
   version: '$1'
   engine:
@@ -187,12 +257,14 @@
     default: 'Presto'
     versions:
       15: 'Blink'
-- regex: '(?:Opera|OPR)[/ ](?:9.80.*Version/)?(\d+[\.\d]+)'
+- regex: '(?:Opera|OPR)[/ ]?(?:9.80.*Version/)?(\d+[\.\d]+)'
   name: 'Opera'
   version: '$1'
   engine:
-    default: 'Presto'
+    default: ''
     versions:
+      3.5: 'Elektra'
+      7: 'Presto'
       15: 'Blink'
 
 #Rekonq
@@ -258,6 +330,20 @@
   engine:
     default: 'Blink'
 
+#Vivaldi
+- regex: 'Vivaldi(?:/(\d+[\.\d]+))?'
+  name: 'Vivaldi'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+#TweakStyle
+- regex: 'TweakStyle(?:/(\d+[\.\d]+))?'
+  name: 'TweakStyle'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
 #Midori
 - regex: 'Midori(?:/(\d+[\.\d]+))?'
   name: 'Midori'
@@ -271,7 +357,7 @@
   version: '$1'
 
 #Maxthon
-- regex: 'Maxthon[ /](\d+[\.\d]+)'
+- regex: '(?:Maxthon|MxBrowser)[ /](\d+[\.\d]+)'
   name: 'Maxthon'
   version: '$1'
   engine:
@@ -319,6 +405,34 @@
   name: 'Sogou Explorer'
   version: '$1'
 
+# QQ Browser
+- regex: 'M?QQBrowser(?:/(?:Mini)?([\.\d]+))?'
+  name: 'QQ Browser'
+  version: '$1'
+
+# MIUI Browser
+- regex: 'MIUIBrowser(?:/(\d+[\.\d]+))?'
+  name: 'MIUI Browser'
+  version: '$1'
+
+# Coc Coc
+# This browser (http://coccoc.vn/) is built on top of Chromium with
+# additional features for Vietnamese users. Its regex has to be placed
+# before generic Chrome regex, or Chrome regex will match first and
+# the browser is mistaken as "Chrome".
+- regex: 'coc_coc_browser(?:/(\d+[\.\d]+))?'
+  name: 'Coc Coc'
+  version: '$1'
+  engine:
+    default: 'WebKit'
+    versions:
+      28: 'Blink'
+
+#Samsung Browser
+- regex: 'Samsung ?Browser(?:[/ ](\d+[\.\d]+))?'
+  name: 'Samsung Browser'
+  version: '$1'
+
 #Chrome
 - regex: 'CrMo(?:/(\d+[\.\d]+))?'
   name: 'Chrome Mobile'
@@ -332,7 +446,7 @@
   version: '$1'
   engine:
     default: 'WebKit'
-- regex: 'Chrome(?:/(\d+[\.\d]+))?.*Mobile'
+- regex: 'Chrome(?:/(\d+[\.\d]+))? Mobile'
   name: 'Chrome Mobile'
   version: '$1'
   engine:
@@ -390,6 +504,11 @@
   name: 'Palm WebPro'
   version: '$1'
 
+#Palmscape
+- regex: 'Palmscape(?:[ /](\d+[\.\d]+))?'
+  name: 'Palmscape'
+  version: '$1'
+
 #Jasmine
 - regex: 'Jasmine(?:[ /](\d+[\.\d]+))?'
   name: 'Jasmine'
@@ -441,11 +560,6 @@
   engine:
     default: 'Gecko'
 
-#BlackBerry Browser
-- regex: 'BlackBerry|PlayBook|BB10'
-  name: 'BlackBerry Browser'
-  version: ''
-
 #BrowseX
 - regex: 'BrowseX \((\d+[\.\d]+)'
   name: 'BrowseX'
@@ -482,8 +596,13 @@
   engine:
     default: 'Text-based'
 
+#Element Browser
+- regex: 'Element Browser(?:[ /](\d+[\.\d]+))?'
+  name: 'Element Browser'
+  version: '$1'
+
 #Firebird
-- regex: 'Firebird(?:/(\d+[\.\d]+))?'
+- regex: 'Firebird(?! Build)(?:/(\d+[\.\d]+))?'
   name: 'Firebird'
   version: '$1'
   engine:
@@ -611,8 +730,21 @@
   engine:
     default: 'Text-based'
 
+# LG Browser
+- regex: 'LG Browser(?:/(\d+[\.\d]+))'
+  name: 'LG Browser'
+  version: '$1'
+
+# LuaKit
+- regex: 'LuaKit(?:/(\d+[\.\d]+))?'
+  name: 'LuaKit'
+  version: '$1'
+
 #Openwave Mobile Browser
 - regex: 'UP.Browser(?:/(\d+[\.\d]+))?'
+  name: 'Openwave Mobile Browser'
+  version: '$1'
+- regex: 'Openwave(?:/(\d+[\.\d]+))?'
   name: 'Openwave Mobile Browser'
   version: '$1'
 
@@ -634,28 +766,6 @@
   version: '$1'
   engine:
     default: 'Blink'
-
-# MIUI Browser
-- regex: 'MIUIBrowser(?:/(\d+[\.\d]+))?'
-  name: 'MIUI Browser'
-  version: '$1'
-
-#Nokia Browser
-- regex: '(?:NokiaBrowser|BrowserNG)(?:/(\d+[\.\d]+))?'
-  name: 'Nokia Browser'
-  version: '$1'
-- regex: 'Series60/5\.0'
-  name: 'Nokia Browser'
-  version: '7.0'
-- regex: 'Series60/(\d+[\.\d]+)'
-  name: 'Nokia OSS Browser'
-  version: '$1'
-- regex: 'S40OviBrowser/(\d+[\.\d]+)'
-  name: 'Nokia Ovi Browser'
-  version: '$1'
-- regex: '^Nokia|Nokia[EN]?\d+'
-  name: 'Nokia Browser'
-  version: ''
 
 #NetFront
 - regex: 'NetFrontLifeBrowser(?:/(\d+[\.\d]+))?'
@@ -685,9 +795,31 @@
   name: 'Obigo'
   version: ''
 
+#Odyssey Web Browser
+- regex: 'Odyssey Web Browser(?:.*OWB/(\d+[\.\d]+))?'
+  name: 'Odyssey Web Browser'
+  version: '$1'
+
+#Off By One
+- regex: 'OffByOne'
+  name: 'Off By One'
+  version: ''
+
+#ONE Browser
+- regex: 'OneBrowser(?:[ /](\d+[\.\d]+))?'
+  name: 'ONE Browser'
+  version: '$1'
+  engine:
+    default: 'WebKit'
+
 #Oregano
 - regex: 'Oregano(?:[ /](\d+[\.\d]+))?'
   name: 'Oregano'
+  version: '$1'
+
+#Otter Browser
+- regex: 'Otter(?:[ /](\d+[\.\d]+))?'
+  name: 'Otter Browser'
   version: '$1'
 
 #Polaris
@@ -700,12 +832,24 @@
   name: 'SEMC-Browser'
   version: '$1'
 
+#Seraphic Sraf
+- regex: 'Sraf(?:[/ ](\d+[\.\d]+))?'
+  name: 'Seraphic Sraf'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
 #Shiira
 - regex: 'Shiira(?:[/ ](\d+[\.\d]+))?'
   name: 'Shiira'
   version: '$1'
   engine:
     default: 'WebKit'
+
+#Skyfire
+- regex: 'Skyfire(?:[/ ](\d+[\.\d]+))?'
+  name: 'Skyfire'
+  version: '$1'
 
 #Snowshoe
 - regex: 'Snowshoe(?:/(\d+[\.\d]+))?'
@@ -719,10 +863,47 @@
   name: 'Sunrise'
   version: '$1'
 
+#SuperBird
+- regex: 'SuperBird(?:/(\d+[\.\d]+))?'
+  name: 'SuperBird'
+  version: '$1'
+
+#Vision Mobile Browser
+- regex: 'Vision-Browser(?:/(\d+[\.\d]+))'
+  name: 'Vision Mobile Browser'
+  version: '$1'
+
+#WeTab Browser
+- regex: 'WeTab-Browser'
+  name: 'WeTab Browser'
+  version: ''
+
 #Xiino
 - regex: 'Xiino(?:/(\d+[\.\d]+))?'
   name: 'Xiino'
   version: '$1'
+
+#Nokia Browser
+- regex: '(?:NokiaBrowser|BrowserNG)(?:/(\d+[\.\d]+))?'
+  name: 'Nokia Browser'
+  version: '$1'
+- regex: 'Series60/5\.0'
+  name: 'Nokia Browser'
+  version: '7.0'
+- regex: 'Series60/(\d+[\.\d]+)'
+  name: 'Nokia OSS Browser'
+  version: '$1'
+- regex: 'S40OviBrowser/(\d+[\.\d]+)'
+  name: 'Nokia Ovi Browser'
+  version: '$1'
+- regex: '^Nokia|Nokia[EN]?\d+'
+  name: 'Nokia Browser'
+  version: ''
+
+#BlackBerry Browser
+- regex: 'BlackBerry|PlayBook|BB10'
+  name: 'BlackBerry Browser'
+  version: ''
 
 #Android Browser
 - regex: 'Android'
@@ -732,7 +913,7 @@
     default: 'WebKit'
 
 #Safari
-- regex: '(?:iPod|iPad|iPhone).+Version/(\d+[\.\d]+)'
+- regex: '(?:(?:iPod|iPad|iPhone).+Version|MobileSafari)/(\d+[\.\d]+)'
   name: 'Mobile Safari'
   version: '$1'
   engine:

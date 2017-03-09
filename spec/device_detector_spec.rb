@@ -1,19 +1,21 @@
-require 'spec_helper'
+require_relative 'spec_helper'
 
-RSpec.describe DeviceDetector do
+describe DeviceDetector do
 
-  subject(:client) { DeviceDetector.new(user_agent) }
+  subject { DeviceDetector.new(user_agent) }
 
-  context 'known user agent' do
+  alias :client :subject
 
-    context 'desktop chrome browser' do
+  describe 'known user agent' do
+
+    describe 'desktop chrome browser' do
 
       let(:user_agent) { 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69' }
 
       describe '#name' do
 
         it 'returns the name' do
-          expect(client.name).to eq('Chrome')
+          client.name.must_equal 'Chrome'
         end
 
       end
@@ -21,7 +23,7 @@ RSpec.describe DeviceDetector do
       describe '#full_version' do
 
         it 'returns the full version' do
-          expect(client.full_version).to eq('30.0.1599.69')
+          client.full_version.must_equal '30.0.1599.69'
         end
 
       end
@@ -29,7 +31,7 @@ RSpec.describe DeviceDetector do
       describe '#os_name' do
 
         it 'returns the operating system name' do
-          expect(client.os_name).to eq('Mac')
+          client.os_name.must_equal 'Mac'
         end
 
       end
@@ -37,7 +39,7 @@ RSpec.describe DeviceDetector do
       describe '#os_full_version' do
 
         it 'returns the operating system full version' do
-          expect(client.os_full_version).to eq('10_8_5')
+          client.os_full_version.must_equal '10.8.5'
         end
 
       end
@@ -45,7 +47,7 @@ RSpec.describe DeviceDetector do
       describe '#known?' do
 
         it 'returns true' do
-          expect(client.known?).to eq(true)
+          client.known?.must_equal true
         end
 
       end
@@ -53,7 +55,7 @@ RSpec.describe DeviceDetector do
       describe '#bot?' do
 
         it 'returns false' do
-          expect(client.bot?).to eq(false)
+          client.bot?.must_equal false
         end
 
       end
@@ -61,29 +63,7 @@ RSpec.describe DeviceDetector do
       describe '#bot_name' do
 
         it 'returns nil' do
-          expect(client.bot_name).to be_nil
-        end
-
-      end
-
-    end
-
-    context 'mobile iPhone 5S' do
-
-      let(:user_agent) { 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B440 [FBDV/iPhone6,1]' }
-
-      describe '#device_name' do
-
-        it 'returns device name' do
-          expect(client.device_name).to eq('iPhone 5S')
-        end
-
-      end
-
-      describe '#device_type' do
-
-        it 'returns the device type' do
-          expect(client.device_type).to eq('smartphone')
+          client.bot_name.must_be_nil
         end
 
       end
@@ -92,14 +72,14 @@ RSpec.describe DeviceDetector do
 
   end
 
-  context 'unknown user agent' do
+  describe 'unknown user agent' do
 
     let(:user_agent) { 'garbage123' }
 
     describe '#name' do
 
       it 'returns nil' do
-        expect(client.name).to be_nil
+        client.name.must_be_nil
       end
 
     end
@@ -107,7 +87,7 @@ RSpec.describe DeviceDetector do
     describe '#full_version' do
 
       it 'returns nil' do
-        expect(client.full_version).to be_nil
+        client.full_version.must_be_nil
       end
 
     end
@@ -115,7 +95,7 @@ RSpec.describe DeviceDetector do
     describe '#os_name' do
 
       it 'returns nil' do
-        expect(client.os_name).to be_nil
+        client.os_name.must_be_nil
       end
 
     end
@@ -123,7 +103,7 @@ RSpec.describe DeviceDetector do
     describe '#os_full_version' do
 
       it 'returns nil' do
-        expect(client.os_full_version).to be_nil
+        client.os_full_version.must_be_nil
       end
 
     end
@@ -131,7 +111,7 @@ RSpec.describe DeviceDetector do
     describe '#known?' do
 
       it 'returns false' do
-        expect(client.known?).to eq(false)
+        client.known?.must_equal false
       end
 
     end
@@ -139,7 +119,7 @@ RSpec.describe DeviceDetector do
     describe '#bot?' do
 
       it 'returns false' do
-        expect(client.bot?).to eq(false)
+        client.bot?.must_equal false
       end
 
     end
@@ -147,21 +127,21 @@ RSpec.describe DeviceDetector do
     describe '#bot_name' do
 
       it 'returns nil' do
-        expect(client.bot_name).to be_nil
+        client.bot_name.must_be_nil
       end
 
     end
 
   end
 
-  context 'bot' do
+  describe 'bot' do
 
     let(:user_agent) { 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' }
 
     describe '#name' do
 
       it 'returns nil' do
-        expect(client.name).to be_nil
+        client.name.must_be_nil
       end
 
     end
@@ -169,7 +149,7 @@ RSpec.describe DeviceDetector do
     describe '#full_version' do
 
       it 'returns nil' do
-        expect(client.full_version).to be_nil
+        client.full_version.must_be_nil
       end
 
     end
@@ -177,7 +157,7 @@ RSpec.describe DeviceDetector do
     describe '#os_name' do
 
       it 'returns nil' do
-        expect(client.os_name).to be_nil
+        client.os_name.must_be_nil
       end
 
     end
@@ -185,7 +165,7 @@ RSpec.describe DeviceDetector do
     describe '#os_full_version' do
 
       it 'returns nil' do
-        expect(client.os_full_version).to be_nil
+        client.os_full_version.must_be_nil
       end
 
     end
@@ -193,7 +173,7 @@ RSpec.describe DeviceDetector do
     describe '#known?' do
 
       it 'returns false' do
-        expect(client.known?).to eq(false)
+        client.known?.must_equal false
       end
 
     end
@@ -201,7 +181,7 @@ RSpec.describe DeviceDetector do
     describe '#bot?' do
 
       it 'returns true' do
-        expect(client.bot?).to eq(true)
+        client.bot?.must_equal true
       end
 
     end
@@ -209,7 +189,7 @@ RSpec.describe DeviceDetector do
     describe '#bot_name' do
 
       it 'returns the name of the bot' do
-        expect(client.bot_name).to eq('Googlebot')
+        client.bot_name.must_equal 'Googlebot'
       end
 
     end
